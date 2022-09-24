@@ -18,7 +18,7 @@ if(isset($_POST['save'])){
     $queryCheckPhone = mysqli_query($con, "SELECT * FROM users WHERE phonenum = '$phonenum'") or die(mysqli_error($con));
 
         $query = mysqli_query($con,
-        "UPDATE users SET email = '$email', name = '$name', phonenum ='$phonenum' WHERE id = '$id';")
+        "UPDATE users SET email = '$email', name = '$name', phonenum ='$phonenum' WHERE id = '$id';")   
             or die(mysqli_error($con));
 
         if($query){
