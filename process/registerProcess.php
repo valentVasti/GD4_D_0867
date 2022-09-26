@@ -17,13 +17,11 @@ if(isset($_POST['register'])){
     $queryCheckPhone = mysqli_query($con, "SELECT * FROM users WHERE phonenum = '$phonenum'") or die(mysqli_error($con));
 
     if(mysqli_num_rows($queryCheckEmail)==0 && mysqli_num_rows($queryCheckPhone)==0){
-        // Melakukan insert ke databse dengan query dibawah ini
         $query = mysqli_query($con,
         "INSERT INTO users(email, password, name, phonenum, membership)
             VALUES
         ('$email', '$password', '$name', '$phonenum', '$membership')")
-            or die(mysqli_error($con)); // perintah mysql yang gagal dijalankan ditangani oleh perintah “or die”
-
+            or die(mysqli_error($con));
         if($query){
             echo
                 '<script>
@@ -39,22 +37,22 @@ if(isset($_POST['register'])){
 
     }else if(mysqli_num_rows($queryCheckEmail)!=0 && mysqli_num_rows($queryCheckPhone)==0){
         echo
-        '<script>
-        alert("Register Failed! Note: E-mail account already registered");
-        window.location = "../page/registerPage.php"
-        </script>';        
+            '<script>
+            alert("Register Failed! Note: E-mail account already registered");
+            window.location = "../page/registerPage.php"
+            </script>';        
     }else if(mysqli_num_rows($queryCheckEmail)==0 && mysqli_num_rows($queryCheckPhone)!=0){
         echo
-        '<script>
-        alert("Register Failed! Note: Phone number already registered");
-        window.location = "../page/registerPage.php"
-        </script>';
+            '<script>
+            alert("Register Failed! Note: Phone number already registered");
+            window.location = "../page/registerPage.php"
+            </script>';
     }else{
         echo
-        '<script>
-        alert("Register Failed! Note: Phone number and E-mail account already registered");
-        window.location = "../page/registerPage.php"
-        </script>';        
+            '<script>
+            alert("Register Failed! Note: Phone number and E-mail account already registered");
+            window.location = "../page/registerPage.php"
+            </script>';        
     }
 
     }else{
